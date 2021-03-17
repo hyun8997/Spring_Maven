@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<bean id="g1" class="spring_app06_maven.Gun"></bean>
+	<bean id="s1" class="spring_app06_maven.StunGun"></bean>
+	
+	
+	<!-- Police p1 = new Police(g1, 120); -->
+	<bean id="p1" class="spring_app06_maven.Police">
+	
+		<!-- 1. call by value	 -->
+		<!-- index 는 0부터 시작 -->
+		<!-- ref : 참조값(주소) -->
+		<!-- 
+		<constructor-arg index="0" ref="s1"></constructor-arg>	순서, 속성(ref=id) 넣어줌
+		<constructor-arg index="1" value="120"></constructor-arg>
+		 -->
+		
+		
+		<!-- 2. setter/getter 는 property를 이용 -->
+		<property name="hp" value="150"></property>
+		<property name="w" ref="g1"></property>
+		
+		
+	</bean>
+	
+	<bean id="sniper" class="spring_app06_maven.Sniper">
+		<constructor-arg index="0" ref="g1"></constructor-arg>
+		<constructor-arg index="1" value="90"></constructor-arg>
+	</bean>
+	
+	
+	
+	
+</beans>

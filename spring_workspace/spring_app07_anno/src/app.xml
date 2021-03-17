@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
+	
+	<!-- NowTime time = new NowTime(); -->
+	<bean id="time" class="spring_app07_anno.NowTime"></bean>
+	  
+	  
+	<!-- GreetingImple gi = new GreetingImple();	==> 기본 생성자없이 오버로딩 생성자만 있어서 밑의 기본 생성자 호출은 에러 -->
+	<!-- 오버로딩 생성자 주석처리하고 게터세터로 하기로 함 -->
+	<bean id="gi" class="spring_app07_anno.GreetingImple">
+	
+		<!-- 오토 와이어로 대체됨 -->
+		<!-- <property name="nt" ref="time" />		위에 선언한  nowtime을 받아 넣어놓기 -->
+		
+		<property name="msg" value="잘 됬나?"/>
+	
+	</bean>
+	
+	
+</beans>
