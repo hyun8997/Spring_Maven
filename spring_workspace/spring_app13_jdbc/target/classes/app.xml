@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+
+	<!-- 1. 기존의 방식(처음배운) -->
+<!-- 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/goott7?useSSL=false" />
+		<property name="username" value="scott" />
+		<property name="password" value="tiger" />
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />	       dataSource라는 이름으로 ref=dataSource를 가져옴
+	</bean>
+	
+	<bean id="dao" class="spring_app13_jdbc.MysqlDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />		내 필드에 있는 jdbcTemplate(name)에 위의 jdbcTemplate(위에 있는id) 가져옴
+	</bean>
+ -->	
+
+	
+	<!-- 2. connection pooling 방식 -->
+	<bean id="pool" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">       
+																						<!-- ==> destroy-method="close" : 다 쓰고 나면 자동으로 close() 수행 -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/goott7?useSSL=false" />
+		<property name="username" value="scott" />
+		<property name="password" value="tiger" />
+		
+		<!-- pool 추가, 속성 지정만 하면됨 -->
+		<!-- 초기에 몇개를 dbms에 연결해 놓을지 지정 -->
+		<property name="initialSize" value="3" />
+		<!-- 최대 연결개수 정의 -->
+		<property name="maxTotal" value="20" />
+		<!-- 지정된 수보다 연결이 남을 경우 삭제 지정, 쭉 늘어나다가 6000이 됬는데 더이상 연결이 없으면 삭제 -->
+		<property name="maxIdle" value="6000" />
+		
+	</bean>
+	
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="pool" />
+	</bean>
+	
+	<bean id="dao" class="spring_app13_jdbc.MysqlDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+
+
+</beans>
