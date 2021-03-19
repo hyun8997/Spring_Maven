@@ -7,14 +7,14 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+
 public class ConnectionManager {
-       //  SqlSession ==== Connection
+//	SqlSession  ==== Connection
 	
 	static SqlSessionFactory factory;
 	
-//	static {} : ConnectionManager°¡ ¸Ş¸ğ¸®¿¡ ·ÎµùµÉ ¶§ °°ÀÌ ½ÇÇàµÇ´Â ºÎºĞ
-//	           : new ÇÏ±â Àü¿¡ ½ÇÇàµÇ´Â ºí·Ï
-	
+//	static {} : ConnectionManagerê°€ ë©”ëª¨ë¦¬ì— ë¡œë”©ë  ë•Œ ê°™ì´ ì‹¤í–‰ë˜ëŠ” ë¶€ë¶„
+//	          : new í•˜ê¸° ì „ì— ì‹¤í–‰ë˜ëŠ”  ì½”ë“œ ë¸”ë¡
 	
 	static {
 		try {
@@ -22,19 +22,28 @@ public class ConnectionManager {
 			
 			SqlSessionFactoryBuilder ssfb = new SqlSessionFactoryBuilder();
 			
-			factory = ssfb.build(r);
-			} catch (IOException e) {
+			factory = ssfb.build(r);			
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-	
-	}//static{} end
+		}				
+	}// static{} end
 	
 	public static SqlSessionFactory getFactory() {
-		
 		return factory;
-		
-		
 	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+

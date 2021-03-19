@@ -1,12 +1,15 @@
 package kr.co.goott.app.mybatis;
 
+// DTO(Data Transfer Object)
+// VO
+
 public class DeptDTO {
 	private int deptno;
 	private String dname;
 	private String loc;
 	
 	public DeptDTO() {}
-	
+
 	public DeptDTO(int deptno, String dname, String loc) {
 		super();
 		this.deptno = deptno;
@@ -37,8 +40,6 @@ public class DeptDTO {
 	public void setLoc(String loc) {
 		this.loc = loc;
 	}
-	
-	
 	
 	
 }
