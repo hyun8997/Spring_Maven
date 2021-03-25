@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>spring_web10_ex</display-name>
+  
+    <!-- The front controller of this Spring Web application, responsible for handling all application requests -->
+	<servlet>
+		<servlet-name>springDispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<!-- xml을 통한 dispatcher servlet을 설정 파일을 한 개 이상 할 수 도 있음 -->
+			<param-value>/WEB-INF/spring-app.xml				<!-- 디스패쳐 서블릿 파일 2개임 -->
+			            			  /WEB-INF/spring-controller.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Map all requests to the DispatcherServlet for handling -->
+	<servlet-mapping>
+		<servlet-name>springDispatcherServlet</servlet-name>
+		<!-- 
+		이제부터 이 웹서버(사이트)로 들어오는 요청을 스프링 컨테이너에게 우선적으로 요청하게 하기
+		(*.do ==> /)
+		 -->
+		<!-- <url-pattern>*.do</url-pattern> -->		<!-- 내 디스패쳐서블릿은 .do가 있어야 인식 -->
+		<url-pattern>/</url-pattern>			<!-- 이제는 모든 제어권을 컨테이너에게 -->
+	</servlet-mapping>
+  
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

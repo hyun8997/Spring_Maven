@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace=" ">
+	<select id="selectAllDept" resultType="dto" >			<!-- 앞에 설정정보에 dto 별칭을 설정했으니 그거로 결과 받기 -->
+		select * from dept order by deptno desc
+	</select>
+	
+	<insert id="insertOneByDeptno" parameterType="dto" >	<!-- 파라매터 dto로 -->
+		insert into dept 
+		values (#{deptno}, #{dname}, #{loc})  
+	</insert>
+	
+</mapper>
+
+
