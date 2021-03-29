@@ -1,0 +1,20 @@
+create table tbl_member(
+  uid varchar(50) not null,
+  pwd varchar(50) not null,
+  username varchar(50) not null,
+  email varchar(100),
+  regdate timestamp default now(),
+  updateDate timestamp default now(),
+  primary key(uid)
+);
+
+
+
+
+
+
+
+
+regdate   timestamp가 변화하는 시간 더 잘잡는다고 사용
+	사용자가 변경하면 안되므로 default now()
+updateDate는 수정날짜
